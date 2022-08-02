@@ -15,6 +15,9 @@ auction1.setDebug(true);
 const bidder1 = new Bidder();
 const bidder2 = new Bidder();
 const bidder3 = new Bidder();
+bidder1.log();
+bidder2.log();
+bidder3.log();
 
 //
 auction1.placeBid(100, bidder1);
@@ -24,3 +27,6 @@ auction1.placeBid(7898, bidder2);
 auction1.placeBid(8956, bidder1);
 
 auction1.log();
+bidder1.log();
+bidder2.log();
+bidder3.log();

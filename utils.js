@@ -14,4 +14,4 @@ export const generateName = () => {
 };
 
 export const generateBalance = (min, max) =>
-  Math.random() * (max - min) + min + 1;
+  parseFloat((Math.random() * (max - min) + min + 1).toFixed(2));

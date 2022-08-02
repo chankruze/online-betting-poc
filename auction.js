@@ -61,6 +61,8 @@ export default class Auction {
       if (bid.amount > this.#openingValue) {
         bid.state = Bid.SUCCESSFUL;
         this.#topBid = bid;
+        // TODO: deduct from bidder's wallet when auction ends
+        bid.bidder.debitFromWallet(amount);
         this.devDebug(bid);
         return bid;
       }
@@ -76,6 +78,8 @@ export default class Auction {
       if (bid.amount > this.#topBid.amount) {
         bid.state = Bid.SUCCESSFUL;
         this.#topBid = bid;
+        // TODO: deduct from bidder's wallet when auction ends
+        bid.bidder.debitFromWallet(amount);
         this.devDebug(bid);
         return bid;
       }

@@ -5,28 +5,32 @@ Created: Tue Aug 02 2022 11:35:26 GMT+0530 (India Standard Time)
 Copyright (c) geekofia 2022 and beyond
 */
 
-import { generateBalance, generateName } from "./utils.js";
+import { generateName } from "./utils.js";
+import Wallet from "./wallet.js";
 
 export default class Bidder {
-  #balance;
+  #wallet;
 
   constructor() {
     this.name = generateName();
-    this.#balance = generateBalance(99, 99999);
+    this.#wallet = new Wallet();
   }
 
   // getter: can bid
   canBid(amount) {
-    if (this.#balance >= amount) return true;
+    if (this.#wallet.getBalance() >= amount) return true;
     return false;
   }
 
-  // // getter: balance
-  // getBalance() {
-  //   return this.#balance;
-  // }
+  debitFromWallet(amount) {
+    this.#wallet.debit(amount);
+  }
 
-  #updateBalance(amount) {
-    this.#balance -= amount;
+  log() {
+    console.table({
+      name: this.name,
+      walletBalance: this.#wallet.getBalance(),
+      walletCurrency: this.#wallet.getCurrency(),
+    });
   }
 }
